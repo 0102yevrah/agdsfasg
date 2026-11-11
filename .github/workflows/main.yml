@@ -13,16 +13,14 @@ jobs:
     steps:
       - name: Check out firmware and submodules
         uses: actions/checkout@v4
-
-      - name: Build FAP with uFBT
-        id: build-app
-        uses: flipperdevices/flipperzero-ufbt-action@v0.1
         with:
-          app-dir: applications_user/ble_mode_switcher
-          sdk-channel: release
+          submodules: recursive
+
+      - name: Build FAP
+        run: ./fbt fap_ble_mode_switcher
 
       - name: Upload FAP artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ble-mode-switcher-${{ steps.build-app.outputs.suffix }}
-          path: ${{ steps.build-app.outputs.fap-artifacts }}
+          name: ble-mode-switcher-f7
+          path: build/**/.extapps/ble_mode_switcher.fap
