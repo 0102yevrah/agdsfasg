@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Check out firmware and submodules
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: recursive
 
@@ -20,7 +20,7 @@ jobs:
         run: ./fbt fap_ble_mode_switcher
 
       - name: Upload FAP artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ble-mode-switcher-f7
           path: build/**/.extapps/ble_mode_switcher.fap
